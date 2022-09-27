@@ -24,6 +24,7 @@
     "react-router-dom": "^6.4.0",
     "styled-components": "^5.3.5",
     "styled-reset": "^4.4.2",
+    "swiper": "^8.4.2",
     "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {
