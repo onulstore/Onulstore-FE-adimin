@@ -5,6 +5,9 @@ import * as S from './style';
 import Select from 'components/ui/Select';
 import ImageUploader from 'components/ui/ImageUploader';
 import axios from 'axios';
+
+const token =
+  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ4NzI1MzJ9.UN1eipqk8dginXKqlxLNMf4IPyqph10F5NAWKc_AWDlvXBACNKmfIHUfi3eKvQTrLBuuQIDHvbQZmIHjczvU6Q';
 const brands = [
   {
     brandName: 'nike',
@@ -27,14 +30,14 @@ const ProductRegister = () => {
     content: '',
     price: 0,
     productName: '',
-    productStatus: 'NEW',
+    productStatus: 'SALE',
     quantity: 0,
   });
 
   const [images, setImages] = useState({});
 
   const imageArray = Object.values(images);
-  console.log(productInfo);
+  console.log('productInfo', productInfo);
   console.log(imageArray);
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -60,24 +63,24 @@ const ProductRegister = () => {
       url: 'http://onulstore.dlcpop.com/products',
       method: 'POST',
       headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ1NjAzNzN9.CLkLQBDzKHwPZFOpiTaxExcSTR4ac4m4FoZmmX-DBoiPzSp0cXeD8fzl9ylBKzba1EmpN1bzoFiQ94xz1vjh1g`,
+        Authorization: `Bearer ${token}`,
+        // 'content-type': 'application/json',
       },
       data: productInfo,
     });
 
     console.log('아이템', itemResponse);
 
-    const imageResponse = await axios({
-      url: `http://onulstore.dlcpop.com/products/${itemResponse.id}/image`,
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ1NjAzNzN9.CLkLQBDzKHwPZFOpiTaxExcSTR4ac4m4FoZmmX-DBoiPzSp0cXeD8fzl9ylBKzba1EmpN1bzoFiQ94xz1vjh1g`,
-      },
-      data: imageArray,
-    });
-    console.log('이미지', imageResponse);
+    // const imageResponse = await axios({
+    //   url: `http://onulstore.dlcpop.com/products/${itemResponse.id}/image`,
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type': 'application/json',
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    //   data: imageArray,
+    // });
+    // console.log('이미지', imageResponse);
   };
   return (
     <S.Container>
