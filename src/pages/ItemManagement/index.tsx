@@ -1,7 +1,7 @@
 import Table from 'components/Table';
 import * as S from './style';
 import axios from 'axios';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const itemManagement = () => {
   const [data, setdata] = useState([]);
@@ -44,7 +44,6 @@ const itemManagement = () => {
     ],
     [],
   );
-  // Get items for table rows
 
   const getItems = async () => {
     const res = await axios({
