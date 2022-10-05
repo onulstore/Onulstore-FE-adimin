@@ -4,6 +4,7 @@ import theme from '../src/style/theme';
 import { ThemeProvider } from 'styled-components';
 //PAGES
 import Home from './pages/Home';
+import ItemManagement from 'pages/ItemManagement';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <GlobalStyles />
       <Routes>
         <Route index element={<Home />} />
+        <Route path="item-management" element={<ItemManagement />} />
       </Routes>
     </ThemeProvider>
   );
