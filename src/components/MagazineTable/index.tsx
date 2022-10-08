@@ -3,6 +3,7 @@ import * as S from './style';
 import { useTable, useSortBy, usePagination, useRowSelect } from 'react-table';
 import { CalenderIcon } from 'components/icons';
 import ToggleSwitch from 'components/ui/ToggleSwitch';
+import { Link } from 'react-router-dom';
 const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   const defaultRef = useRef();
   const resolvedRef = ref || defaultRef;
@@ -77,12 +78,12 @@ const CurationTable = ({ columns, data }) => {
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map((row) => {
-            // console.log('행', row);
+            console.log('행', row.original);
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
-                  console.log('셀', cell);
+                  // console.log('셀', cell);
                   switch (cell.column.Header) {
                     case '최종수정시간':
                       return <td>API에 정보 없음</td>;
@@ -92,6 +93,18 @@ const CurationTable = ({ columns, data }) => {
                         <td>
                           <ToggleSwitch />
                           API에 정보 없음
+                        </td>
+                      );
+
+                    case '매거진 제목':
+                      return (
+                        <td>
+                          <Link
+                            style={{ color: 'green', textDecoration: 'underline' }}
+                            to={`${row.original.id}`}
+                          >
+                            {row.original.title}
+                          </Link>
                         </td>
                       );
                     case '큐레이션 아이템1':

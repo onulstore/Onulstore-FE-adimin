@@ -13,6 +13,8 @@ import MagazineConfig from 'components/MagazineConfig';
 import MdConfig from 'components/MdConfig';
 import ItemRegister from 'pages/ItemRegister';
 import ItemManagement from 'pages/ItemManagement';
+import MagazineRegister from 'components/MagazineRegister';
+import MagazineEdit from 'components/MagazineEdit';
 
 const App = () => {
   return (
@@ -26,6 +28,9 @@ const App = () => {
           <Route path="review" element={<ReviewConfig />} />
           <Route path="today" element={<TodayConfig />} />
           <Route path="magazine" element={<MagazineConfig />} />
+          <Route path="magazine/register" element={<MagazineRegister />} />
+          <Route path="magazine/:magazineId" element={<MagazineEdit />} />
+
           <Route path="md" element={<MdConfig />} />
         </Route>
         <Route path="item-register" element={<ItemRegister />} />

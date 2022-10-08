@@ -2,9 +2,12 @@ import MagazineTable from 'components/MagazineTable';
 import React, { useState, useMemo, useEffect } from 'react';
 import * as S from './style';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MagazineConfig = () => {
+  const navigate = useNavigate();
   const [todayData, setTodayData] = useState([]);
+
   console.log('todayData', todayData);
   // const token = `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ5MDM4ODB9.mnz-RTYc8Qmb5Bhhz_eE-VxKh7Z57iGdTBsSGuYhtDoYYD3yteoAzIORc6rBCZkATBjBpvoUFruALl2WQe7LdA`;
   const columns = useMemo(
@@ -62,7 +65,7 @@ const MagazineConfig = () => {
     <S.Container>
       <div className="title">
         <div>매거진 설정</div>
-        <button> + 새 매거진 등록</button>
+        <button onClick={() => navigate('register')}> + 새 매거진 등록</button>
       </div>
       <div className="info">
         <div className="info-left">
