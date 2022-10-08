@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import * as S from './style';
 
-const ImageUploader = ({ setImages, imageOrder }) => {
+const ImageUploader = ({ setImages, imageOrder = 0, setPreviewImage }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [currentImage, setCurrentImage] = useState();
-  const [isShow, setIsShow] = useState(true);
+  const [uploader, setUploader] = useState(true);
   const onClickHandler = () => {
     inputRef.current!.click();
   };
@@ -17,18 +17,32 @@ const ImageUploader = ({ setImages, imageOrder }) => {
     const imageReader = new FileReader();
     imageReader.readAsDataURL(imageFile);
     imageReader.addEventListener('load', async (e) => {
-      base64Img = await e.target!.result;
-      setImages((prev) => ({ ...prev, [`image${imageOrder}`]: base64Img.split(',')[1] }));
+      base64Img = e.target!.result;
+      setImages &&
+        setImages((prev) => ({ ...prev, [`image${imageOrder}`]: base64Img.split(',')[1] }));
       setCurrentImage(base64Img);
-      setIsShow(false);
+      setPreviewImage(base64Img);
+      setUploader(false);
     });
   };
 
   return (
     <S.Container>
-      {currentImage && <img src={currentImage} alt="이미지가 없습니다" />}
+      {currentImage && !uploader && (
+        <>
+          <img src={currentImage} alt="이미지가 없습니다" />
+          <button
+            onClick={() => {
+              setUploader(true);
+              setPreviewImage('');
+            }}
+          >
+            이미지 취소
+          </button>
+        </>
+      )}
 
-      {isShow && (
+      {uploader && (
         <S.Button onClick={onClickHandler}>
           <div>이미지 첨부{imageOrder}</div>
           <input type="file" accept="image/*" ref={inputRef} onChange={onUploadHandler} />
