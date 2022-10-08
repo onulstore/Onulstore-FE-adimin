@@ -23,6 +23,7 @@ const Select = ({ label, name, options, onChange }) => {
     <>
       <div>{label}</div>
       <select name={name} onChange={onChange}>
+        <option>브랜드 선택</option>
         {brands?.map((item) => (
           <option key={item.id} value={item.id}>
             {item.brandName}

@@ -6,8 +6,7 @@ import Select from 'components/ui/Select';
 import ImageUploader from 'components/ui/ImageUploader';
 import axios from 'axios';
 
-const token =
-  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ4NzI1MzJ9.UN1eipqk8dginXKqlxLNMf4IPyqph10F5NAWKc_AWDlvXBACNKmfIHUfi3eKvQTrLBuuQIDHvbQZmIHjczvU6Q';
+const token = import.meta.env.VITE_TOKEN; // 추후에 쿠키에서 얻어오는 것으로 변경
 const brands = [
   {
     brandName: 'nike',
@@ -38,7 +37,7 @@ const ProductRegister = () => {
 
   const imageArray = Object.values(images);
   console.log('productInfo', productInfo);
-  console.log(imageArray);
+  console.log('imageArray', imageArray);
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
 
@@ -69,18 +68,18 @@ const ProductRegister = () => {
       data: productInfo,
     });
 
-    console.log('아이템', itemResponse);
-
-    // const imageResponse = await axios({
-    //   url: `http://onulstore.dlcpop.com/products/${itemResponse.id}/image`,
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json',
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    //   data: imageArray,
-    // });
-    // console.log('이미지', imageResponse);
+    const itemId = itemResponse.data.id;
+    console.log('여기까지 실행됨', itemId);
+    const imageResponse = await axios({
+      url: `http://onulstore.dlcpop.com/products/${itemId}/image`,
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: [],
+    });
+    console.log('이미지 response', imageResponse);
   };
   return (
     <S.Container>

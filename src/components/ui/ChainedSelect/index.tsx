@@ -41,7 +41,10 @@ const ChainedSelect = ({ setProductInfo }) => {
   return (
     <>
       <div>카테고리</div>
+      <div>1차 카테고리</div>
       <select name="parent" onChange={categoryChangeHandler}>
+        <option>카테고리 선택</option>
+
         {parentCategories?.map((category) => {
           const { id, categoryName } = category;
 
@@ -52,8 +55,10 @@ const ChainedSelect = ({ setProductInfo }) => {
           );
         })}
       </select>
-
+      <div>2차 카테고리</div>
       <select name="child" onChange={categoryChangeHandler}>
+        <option>카테고리 선택</option>
+
         {childrenCategories?.map((category) => {
           const { id, categoryName } = category;
 

@@ -4,7 +4,7 @@ import theme from '../src/style/theme';
 import { ThemeProvider } from 'styled-components';
 //PAGES
 import Home from './pages/Home';
-import ProductRegister from 'pages/ProductRegister';
+import ProductRegister from 'pages/ItemRegister';
 import ItemManagement from 'pages/ItemManagement';
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
       <GlobalStyles />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/product-register" element={<ProductRegister />} />
+        <Route path="item-register" element={<ProductRegister />} />
         <Route path="item-management" element={<ItemManagement />} />
       </Routes>
     </ThemeProvider>
