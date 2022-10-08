@@ -11,6 +11,7 @@ import ReviewConfig from 'components/ReviewConfig';
 import TodayConfig from 'components/TodayConfig';
 import MagazineConfig from 'components/MagazineConfig';
 import MdConfig from 'components/MdConfig';
+import ItemRegister from 'pages/ItemRegister';
 import ItemManagement from 'pages/ItemManagement';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="magazine" element={<MagazineConfig />} />
           <Route path="md" element={<MdConfig />} />
         </Route>
+        <Route path="item-register" element={<ItemRegister />} />
         <Route path="item-management" element={<ItemManagement />} />
       </Routes>
     </ThemeProvider>
