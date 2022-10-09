@@ -3,12 +3,15 @@ import React, { useState, useMemo, useEffect } from 'react';
 import * as S from './style';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setMagazines } from 'store/slices/magazineSlice';
 
 const MagazineConfig = () => {
   const navigate = useNavigate();
-  const [todayData, setTodayData] = useState([]);
+  const dispatch = useAppDispatch();
+  const { magazineData } = useAppSelector((state) => state.magazine);
 
-  console.log('todayData', todayData);
+  console.log('슬라이스 매거진', magazineData);
   // const token = `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ5MDM4ODB9.mnz-RTYc8Qmb5Bhhz_eE-VxKh7Z57iGdTBsSGuYhtDoYYD3yteoAzIORc6rBCZkATBjBpvoUFruALl2WQe7LdA`;
   const columns = useMemo(
     () => [
@@ -50,11 +53,8 @@ const MagazineConfig = () => {
       },
     });
 
-    console.log('매거진', res.data.content);
-
-    const itemData = res.data.content;
-
-    setTodayData(itemData);
+    const magazineData = res.data.content;
+    dispatch(setMagazines(magazineData));
   };
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const MagazineConfig = () => {
           </div>
         </div>
       </div>
-      <MagazineTable data={todayData} columns={columns} />
+      <MagazineTable data={magazineData} columns={columns} />
     </S.Container>
   );
 };

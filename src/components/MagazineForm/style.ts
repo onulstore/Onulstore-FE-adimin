@@ -16,5 +16,14 @@ export const Container = styled.div`
     .preview-image {
       width: 500px;
     }
+
+    .preview-title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .preview-content {
+      font-size: 20px;
+    }
   }
 `;
