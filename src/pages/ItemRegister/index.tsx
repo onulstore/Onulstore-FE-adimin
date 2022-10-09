@@ -7,7 +7,6 @@ import ImageUploader from 'components/ui/ImageUploader';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-const [cookies] = useCookies();
 const brands = [
   {
     brandName: 'nike',
@@ -22,7 +21,8 @@ const brands = [
     id: 2,
   },
 ];
-const ProductRegister = () => {
+const ItemRegister = () => {
+  const [cookies] = useCookies();
   const categories = useRef([]);
   const [productInfo, setProductInfo] = useState({
     brandId: 0,
@@ -64,7 +64,7 @@ const ProductRegister = () => {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${cookies.accessToken}`,
-        // 'content-type': 'application/json',
+        'content-type': 'application/json',
       },
       data: productInfo,
     });
@@ -124,4 +124,4 @@ const ProductRegister = () => {
   );
 };
 
-export default ProductRegister;
+export default ItemRegister;

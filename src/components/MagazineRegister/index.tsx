@@ -20,6 +20,8 @@ const MagazineRegister = () => {
     });
 
     console.log('postMagazine 응답값', res);
+
+    navigate(-1);
   };
   return (
     <S.Container>
