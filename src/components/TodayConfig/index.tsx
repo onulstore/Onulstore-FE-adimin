@@ -2,10 +2,12 @@ import TodayTable from 'components/TodayTable';
 import React, { useState, useMemo, useEffect } from 'react';
 import * as S from './style';
 import axios from 'axios';
+import TodayModal from 'components/TodayModal';
 
 const TodayConfig = () => {
   const [todayData, setTodayData] = useState([]);
-  console.log('todayData', todayData);
+  const [modal, setModal] = useState(false);
+  console.log('modal', modal);
   const token = `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ5MDM4ODB9.mnz-RTYc8Qmb5Bhhz_eE-VxKh7Z57iGdTBsSGuYhtDoYYD3yteoAzIORc6rBCZkATBjBpvoUFruALl2WQe7LdA`;
   const columns = useMemo(
     () => [
@@ -99,7 +101,8 @@ const TodayConfig = () => {
           </div>
         </div>
       </div>
-      <TodayTable data={todayData} columns={columns} />
+      <TodayTable data={todayData} columns={columns} setModal={setModal} />
+      {modal && <TodayModal setModal={setModal} />}
     </S.Container>
   );
 };

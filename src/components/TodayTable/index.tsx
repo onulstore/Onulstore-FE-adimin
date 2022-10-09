@@ -16,7 +16,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   );
 });
 
-const TodayTable = ({ columns, data }) => {
+const TodayTable = ({ columns, data, setModal }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -82,8 +82,15 @@ const TodayTable = ({ columns, data }) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
-                  console.log('셀', cell);
+                  // console.log('셀', cell);
                   switch (cell.column.Header) {
+                    case '아이템 이름':
+                      return (
+                        <td {...cell.getCellProps()}>
+                          <div onClick={() => setModal(true)}>{cell.render('Cell')}ㅇㅇㅇ</div>
+                        </td>
+                      );
+
                     case '오늘만 할인 여부':
                       return (
                         <td>
@@ -103,6 +110,7 @@ const TodayTable = ({ columns, data }) => {
                       return (
                         <td>
                           <ToggleSwitch />
+                          <div>가짜</div>
                         </td>
                       );
                     case '판매상태변경':
