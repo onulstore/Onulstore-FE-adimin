@@ -15,6 +15,7 @@ import ItemRegister from 'pages/ItemRegister';
 import ItemManagement from 'pages/ItemManagement';
 import MagazineRegister from 'components/MagazineRegister';
 import MagazineEdit from 'components/MagazineEdit';
+import SignIn from 'pages/SignIn';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         </Route>
         <Route path="item-register" element={<ItemRegister />} />
         <Route path="item-management" element={<ItemManagement />} />
+        <Route path="signin" element={<SignIn />} />
       </Routes>
     </ThemeProvider>
   );

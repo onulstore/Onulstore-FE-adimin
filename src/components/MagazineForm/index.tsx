@@ -24,7 +24,6 @@ const MagazineForm = ({ isEdit }) => {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        // Authorization: `Bearer ${token}`,
       },
     });
 

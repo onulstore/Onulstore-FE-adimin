@@ -47,7 +47,6 @@ const MagazineConfig = () => {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        // Authorization: `Bearer ${token}`,
       },
     });
 
