@@ -7,7 +7,6 @@ import TodayModal from 'components/TodayModal';
 const TodayConfig = () => {
   const [todayData, setTodayData] = useState([]);
   const [modal, setModal] = useState(false);
-  console.log('modal', modal);
   const token = `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ5MDM4ODB9.mnz-RTYc8Qmb5Bhhz_eE-VxKh7Z57iGdTBsSGuYhtDoYYD3yteoAzIORc6rBCZkATBjBpvoUFruALl2WQe7LdA`;
   const columns = useMemo(
     () => [

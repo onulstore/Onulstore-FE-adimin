@@ -11,8 +11,6 @@ const MagazineConfig = () => {
   const dispatch = useAppDispatch();
   const { magazineData } = useAppSelector((state) => state.magazine);
 
-  console.log('슬라이스 매거진', magazineData);
-  // const token = `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ5MDM4ODB9.mnz-RTYc8Qmb5Bhhz_eE-VxKh7Z57iGdTBsSGuYhtDoYYD3yteoAzIORc6rBCZkATBjBpvoUFruALl2WQe7LdA`;
   const columns = useMemo(
     () => [
       {

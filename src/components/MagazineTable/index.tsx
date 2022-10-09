@@ -78,7 +78,7 @@ const CurationTable = ({ columns, data }) => {
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map((row) => {
-            console.log('행', row.original);
+            // console.log('행', row.original);
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>

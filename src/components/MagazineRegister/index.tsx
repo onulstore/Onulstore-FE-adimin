@@ -20,7 +20,7 @@ const MagazineRegister = () => {
       data: newMagazine,
     });
 
-    console.log('응답값', res);
+    console.log('postMagazine 응답값', res);
   };
   return (
     <S.Container>

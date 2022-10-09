@@ -69,7 +69,6 @@ const ProductRegister = () => {
     });
 
     const itemId = itemResponse.data.id;
-    console.log('여기까지 실행됨', itemId);
     const imageResponse = await axios({
       url: `http://onulstore.dlcpop.com/products/${itemId}/image`,
       method: 'POST',
