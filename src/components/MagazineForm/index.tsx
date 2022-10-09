@@ -27,10 +27,10 @@ const MagazineForm = ({ isEdit }) => {
       },
     });
 
-    console.log('getMagazine 응답: ', res);
-    const product1 = res.data[0].product;
-    const product2 = res.data[1].product;
-    const magazine = res.data[0].curation;
+    const { title, content, curationImg, display, curationProducts } = res.data;
+    const product1 = curationProducts[0];
+    const product2 = curationProducts[1];
+    const magazine = { title, content, curationImg, display };
 
     dispatch(setMagazineInfo({ product1, product2, magazine }));
   };
