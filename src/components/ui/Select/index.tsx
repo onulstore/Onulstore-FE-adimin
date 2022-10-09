@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const Select = ({ label, name, options, onChange }) => {
   const [brands, setBrands] = useState();
+  const [cookies] = useCookies();
   const getBrands = async () => {
     const res = await axios({
       url: 'http://onulstore.dlcpop.com/brands',
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ4NjI4MjJ9.fVome842Q4qg-3g1M9WHoKjMW3nMzK1r2c6z5PjtPjPPm6mA9IGoEOwAbIMNzpJ5z-9c6iliYYoSbqgs7Nqo3A`,
+        Authorization: `Bearer ${cookies.accessToken}`,
       },
     });
     const resBrands = res.data.findAllBrands;

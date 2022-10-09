@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './slices/rootReducer';
+import { magazineSlice } from './slices/magazineSlice';
+
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    magazine: magazineSlice.reducer,
+  },
 });
 
-export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

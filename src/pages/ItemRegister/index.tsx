@@ -5,8 +5,8 @@ import * as S from './style';
 import Select from 'components/ui/Select';
 import ImageUploader from 'components/ui/ImageUploader';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
-const token = import.meta.env.VITE_TOKEN; // 추후에 쿠키에서 얻어오는 것으로 변경
 const brands = [
   {
     brandName: 'nike',
@@ -21,7 +21,8 @@ const brands = [
     id: 2,
   },
 ];
-const ProductRegister = () => {
+const ItemRegister = () => {
+  const [cookies] = useCookies();
   const categories = useRef([]);
   const [productInfo, setProductInfo] = useState({
     brandId: 0,
@@ -62,20 +63,19 @@ const ProductRegister = () => {
       url: 'http://onulstore.dlcpop.com/products',
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
-        // 'content-type': 'application/json',
+        Authorization: `Bearer ${cookies.accessToken}`,
+        'content-type': 'application/json',
       },
       data: productInfo,
     });
 
     const itemId = itemResponse.data.id;
-    console.log('여기까지 실행됨', itemId);
     const imageResponse = await axios({
       url: `http://onulstore.dlcpop.com/products/${itemId}/image`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookies.accessToken}`,
       },
       data: [],
     });
@@ -124,4 +124,4 @@ const ProductRegister = () => {
   );
 };
 
-export default ProductRegister;
+export default ItemRegister;

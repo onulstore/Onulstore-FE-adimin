@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import * as S from './style';
 
 interface Props {
@@ -8,13 +7,13 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ label, name, type, onChange }: Props) => {
+const Input = ({ label, name, type, onChange, value }: Props) => {
   return (
     <S.Container>
       <S.Label>{label}</S.Label>
-      <S.Input name={name} type={type} onChange={onChange} />
+      <S.Input name={name} type={type} onChange={onChange} value={value} />
     </S.Container>
   );
 };
 
-export default memo(Input);
+export default Input;
