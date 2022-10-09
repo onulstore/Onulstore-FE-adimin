@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import Home from './pages/Home';
 import ProductRegister from 'pages/ItemRegister';
 import ItemManagement from 'pages/ItemManagement';
+import SignIn from 'pages/SignIn';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="item-register" element={<ProductRegister />} />
         <Route path="item-management" element={<ItemManagement />} />
+        <Route path="signin" element={<SignIn />} />
       </Routes>
     </ThemeProvider>
   );
