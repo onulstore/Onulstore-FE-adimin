@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const ChainedSelect = ({ setProductInfo }) => {
   //카테고리 조회용
+  const [cookies] = useCookies;
   const [categoryState, setCategoryState] = useState({
     parent: '',
     child: '',
@@ -28,7 +30,7 @@ const ChainedSelect = ({ setProductInfo }) => {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ1NjAzNzN9.CLkLQBDzKHwPZFOpiTaxExcSTR4ac4m4FoZmmX-DBoiPzSp0cXeD8fzl9ylBKzba1EmpN1bzoFiQ94xz1vjh1g`,
+        Authorization: `Bearer ${cookies.accessToken}`,
       },
     });
 

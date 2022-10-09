@@ -3,11 +3,12 @@ import React, { useState, useMemo, useEffect } from 'react';
 import * as S from './style';
 import axios from 'axios';
 import TodayModal from 'components/TodayModal';
+import { useCookies } from 'react-cookie';
 
 const TodayConfig = () => {
+  const [cookies] = useCookies();
   const [todayData, setTodayData] = useState([]);
   const [modal, setModal] = useState(false);
-  const token = `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ5MDM4ODB9.mnz-RTYc8Qmb5Bhhz_eE-VxKh7Z57iGdTBsSGuYhtDoYYD3yteoAzIORc6rBCZkATBjBpvoUFruALl2WQe7LdA`;
   const columns = useMemo(
     () => [
       {
@@ -52,7 +53,7 @@ const TodayConfig = () => {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookies.accessToken}`,
       },
     });
 

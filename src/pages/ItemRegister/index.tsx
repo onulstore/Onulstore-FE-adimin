@@ -5,8 +5,9 @@ import * as S from './style';
 import Select from 'components/ui/Select';
 import ImageUploader from 'components/ui/ImageUploader';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
-const token = import.meta.env.VITE_TOKEN; // 추후에 쿠키에서 얻어오는 것으로 변경
+const [cookies] = useCookies();
 const brands = [
   {
     brandName: 'nike',
@@ -62,7 +63,7 @@ const ProductRegister = () => {
       url: 'http://onulstore.dlcpop.com/products',
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookies.accessToken}`,
         // 'content-type': 'application/json',
       },
       data: productInfo,
@@ -74,7 +75,7 @@ const ProductRegister = () => {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookies.accessToken}`,
       },
       data: [],
     });

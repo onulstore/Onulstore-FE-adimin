@@ -1,13 +1,12 @@
 import MagazineForm from 'components/MagazineForm';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import axios from 'axios';
 import { useAppSelector } from 'store/hooks';
-
+import { useCookies } from 'react-cookie';
 const MagazineRegister = () => {
+  const [cookies] = useCookies();
   const navigate = useNavigate();
-  const token = import.meta.env.VITE_TOKEN; // 추후에 쿠키에서 얻어오는 것으로 변경
   const newMagazine = useAppSelector((state) => state.magazine.magazine);
   const postMagazine = async () => {
     const res = await axios({
@@ -15,7 +14,7 @@ const MagazineRegister = () => {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookies.accessToken}`,
       },
       data: newMagazine,
     });

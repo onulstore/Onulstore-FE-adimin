@@ -2,11 +2,12 @@ import Table from 'components/Table';
 import * as S from './style';
 import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 const itemManagement = () => {
   const [data, setdata] = useState([]);
   console.log('data', data);
-  const token = `eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjQ5MDM4ODB9.mnz-RTYc8Qmb5Bhhz_eE-VxKh7Z57iGdTBsSGuYhtDoYYD3yteoAzIORc6rBCZkATBjBpvoUFruALl2WQe7LdA`;
+  const [cookies] = useCookies();
   const columns = useMemo(
     () => [
       {
@@ -51,7 +52,7 @@ const itemManagement = () => {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookies.accessToken}`,
       },
     });
     const responseData = res.data.content;
