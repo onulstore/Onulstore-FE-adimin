@@ -10,7 +10,7 @@ const MagazineRegister = () => {
   const newMagazine = useAppSelector((state) => state.magazine.magazine);
   const postMagazine = async () => {
     const res = await axios({
-      url: `http://onulstore.dlcpop.com/curations/magazine`,
+      url: `https://onulstore.breon.ml/curations/magazine`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',

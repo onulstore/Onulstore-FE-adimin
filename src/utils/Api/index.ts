@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://onulstore.dlcpop.com/',
+  baseURL: 'https://onulstore.breon.ml/',
   headers: {
     'content-type': 'application/json',
   },

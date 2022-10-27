@@ -4,6 +4,12 @@ import { DefaultTheme } from 'styled-components';
 const palette = {
   blackColor: '#000000',
   whiteColor: '#ffffff',
+  brandColor: '#D86145',
+  lightMidGrey: '#D6D6D6',
+  midGrey: '#A9A9A9',
+  whiteGrey: '#F5F5F5',
+  darkGrey: '#505050',
+  onulBrandBrighter: '#F17659',
 };
 
 export const theme: DefaultTheme = {
