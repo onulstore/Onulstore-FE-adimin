@@ -32,7 +32,7 @@ function SignIn() {
     setCookie('accessToken', res.data.accessToken, { path: '/' });
     console.log(res);
     if (confirm('로그인 되었습니다.')) {
-      navigate(-1);
+      navigate('/item-management');
     }
   }, []);
 
