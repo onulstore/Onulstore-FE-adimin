@@ -24,7 +24,7 @@ export const Top = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0.95rem 2.2rem;
-    background-color: ${({ theme }) => theme.palette.onulBrandBrighter};
+    background-color: ${({ theme }: any) => theme.palette.onulBrandBrighter};
     border-radius: 1.2rem;
     span {
       font-size: 1.4rem;
@@ -42,7 +42,7 @@ export const Info = styled.div`
   justify-content: space-between;
 
   .info-left {
-    background-color: ${({ theme }) => theme.palette.onulBrandBrighter};
+    background-color: ${({ theme }: any) => theme.palette.onulBrandBrighter};
     border-radius: 1.2rem;
     width: calc(50%);
     margin-right: 1.9rem;

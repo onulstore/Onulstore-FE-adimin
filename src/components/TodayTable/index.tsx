@@ -3,20 +3,20 @@ import * as S from './style';
 import { useTable, useSortBy, usePagination, useRowSelect } from 'react-table';
 import { CalenderIcon } from 'components/icons';
 import ToggleSwitch from 'components/ui/ToggleSwitch';
-const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
+const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }: any, ref) => {
   const defaultRef = useRef();
-  const resolvedRef = ref || defaultRef;
+  const resolvedRef: any = ref || defaultRef;
   useEffect(() => {
     resolvedRef.current.indeterminate = indeterminate;
   }, [resolvedRef, indeterminate]);
   return (
     <>
-      <input type="checkbox" ref={resolvedRef} {...rest} />
+      <input type="checkbox" ref={resolvedRef as any} {...rest} />
     </>
   );
 });
 
-const TodayTable = ({ columns, data, setModal }) => {
+const TodayTable = ({ columns, data, setModal }: any) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -32,11 +32,11 @@ const TodayTable = ({ columns, data, setModal }) => {
     previousPage,
     setPageSize,
     state: { pageIndex, pageSize },
-  } = useTable(
+  }: any = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0 } as any,
     },
     useSortBy,
     usePagination,
@@ -45,14 +45,14 @@ const TodayTable = ({ columns, data, setModal }) => {
       hooks.visibleColumns.push((columns) => [
         {
           id: 'selection',
-          Header: ({ getToggleAllPageRowsSelectedProps }) => (
+          Header: ({ getToggleAllPageRowsSelectedProps }: any) => (
             <div>
               <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
             </div>
           ),
           Cell: ({ row }) => (
             <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+              <IndeterminateCheckbox {...(row as any).getToggleRowSelectedProps()} />
             </div>
           ),
         },
@@ -64,24 +64,26 @@ const TodayTable = ({ columns, data, setModal }) => {
     <S.Container>
       <table {...getTableProps()} className="table">
         <thead>
-          {headerGroups.map((headerGroup) => (
+          {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+              {headerGroup.headers.map((column: any) => (
+                <th {...column.getHeaderProps((column as any).getSortByToggleProps())}>
                   {column.render('Header')}
-                  <span>{column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}</span>
+                  <span>
+                    {(column as any).isSorted ? ((column as any).isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+                  </span>
                 </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
+          {page.map((row: any) => {
             // console.log('행', row);
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+                {row.cells.map((cell: any) => {
                   // console.log('셀', cell);
                   switch (cell.column.Header) {
                     case '아이템 이름':

@@ -7,7 +7,7 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ label, name, type, onChange, value, placeholder }: Props) => {
+const Input = ({ label, name, type, onChange, value, placeholder }: any) => {
   return (
     <S.Container>
       <S.Label>{label}</S.Label>

@@ -61,7 +61,7 @@ const itemManagement = () => {
     const responseData = res.data.content;
 
     console.log(responseData);
-    const tableData = responseData?.map((item) => {
+    const tableData = responseData?.map((item: any) => {
       const { price, quantity } = item;
 
       return { ...item, totalPrice: price * quantity };
@@ -99,9 +99,12 @@ const itemManagement = () => {
               <div className="sale-item">
                 <div>판매중인 아이템</div>
                 <div>
-                  <span>{data.filter((item) => item.productStatus === 'SALE').length}</span>
                   <span>
-                    {(data.filter((item) => item.productStatus === 'SALE').length / data.length) *
+                    {data.filter((item) => (item as any).productStatus === 'SALE').length}
+                  </span>
+                  <span>
+                    {(data.filter((item) => (item as any).productStatus === 'SALE').length /
+                      data.length) *
                       100}
                     %
                   </span>
@@ -116,11 +119,11 @@ const itemManagement = () => {
             <div className="bottom">
               <div className="stock">
                 <div>재고 없음 근접</div>
-                <div>{data.filter((item) => item.quantity <= 100).length}</div>
+                <div>{data.filter((item: any) => item.quantity <= 100).length}</div>
               </div>
               <div className="stock">
                 <div>재고 없음</div>
-                <div>{data.filter((item) => item.quantity === 0).length}</div>
+                <div>{data.filter((item: any) => item.quantity === 0).length}</div>
               </div>
               <div className="stock">
                 <div>평점 1점</div>

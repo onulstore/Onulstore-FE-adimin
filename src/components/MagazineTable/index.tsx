@@ -4,11 +4,11 @@ import { useTable, useSortBy, usePagination, useRowSelect } from 'react-table';
 import { CalenderIcon } from 'components/icons';
 import ToggleSwitch from 'components/ui/ToggleSwitch';
 import { Link } from 'react-router-dom';
-const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
+const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }: any, ref) => {
   const defaultRef = useRef();
   const resolvedRef = ref || defaultRef;
   useEffect(() => {
-    resolvedRef.current.indeterminate = indeterminate;
+    (resolvedRef as any).current.indeterminate = indeterminate;
   }, [resolvedRef, indeterminate]);
   return (
     <>
@@ -17,7 +17,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   );
 });
 
-const CurationTable = ({ columns, data }) => {
+const CurationTable = ({ columns, data }: any) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -33,11 +33,11 @@ const CurationTable = ({ columns, data }) => {
     previousPage,
     setPageSize,
     state: { pageIndex, pageSize },
-  } = useTable(
+  }: any = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0 } as any,
     },
     useSortBy,
     usePagination,
@@ -46,12 +46,12 @@ const CurationTable = ({ columns, data }) => {
       hooks.visibleColumns.push((columns) => [
         {
           id: 'selection',
-          Header: ({ getToggleAllPageRowsSelectedProps }) => (
+          Header: ({ getToggleAllPageRowsSelectedProps }: any) => (
             <div>
               <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
             </div>
           ),
-          Cell: ({ row }) => (
+          Cell: ({ row }: any) => (
             <div>
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
             </div>
@@ -65,9 +65,9 @@ const CurationTable = ({ columns, data }) => {
     <S.Container>
       <table {...getTableProps()} className="table">
         <thead>
-          {headerGroups.map((headerGroup) => (
+          {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
+              {headerGroup.headers.map((column: any) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   <span>{column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}</span>
@@ -77,12 +77,12 @@ const CurationTable = ({ columns, data }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
+          {page.map((row: any) => {
             console.log('행', row.original);
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+                {row.cells.map((cell: any) => {
                   // console.log('셀', cell);
                   switch (cell.column.Header) {
                     case '최종수정시간':

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import * as S from './style';
-const ChainedSelect = ({ setItemInfo, pCategoryId, categoryId }) => {
+const ChainedSelect = ({ setItemInfo, pCategoryId, categoryId }: any) => {
   //카테고리 조회용
   const [cookies] = useCookies();
   const [categoryState, setCategoryState] = useState({
@@ -20,18 +20,18 @@ const ChainedSelect = ({ setItemInfo, pCategoryId, categoryId }) => {
 
   console.log('categoryState', categoryState);
   const [categories, setCategories] = useState();
-  const parentCategories = categories?.filter((category) => {
+  const parentCategories = (categories as any)?.filter((category: any) => {
     return category.parent === null;
   });
-  const childrenCategories = categories?.filter((category) => {
+  const childrenCategories = (categories as any)?.filter((category: any) => {
     return category.parent?.id === categoryState.parent;
   });
 
-  const categoryChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+  const categoryChangeHandler = (e: any) => {
     const { name, value } = e.target;
     setCategoryState((prev) => ({ ...prev, [name]: parseInt(value) }));
 
-    setItemInfo((prev) => ({ ...prev, categoryId: parseInt(value) }));
+    setItemInfo((prev: any) => ({ ...prev, categoryId: parseInt(value) }));
   };
 
   const getCategories = async () => {
@@ -56,7 +56,7 @@ const ChainedSelect = ({ setItemInfo, pCategoryId, categoryId }) => {
         <select name="parent" onChange={categoryChangeHandler} value={categoryState.parent}>
           <option>1차 카테고리 선택</option>
 
-          {parentCategories?.map((category) => {
+          {parentCategories?.map((category: any) => {
             const { id, categoryName } = category;
 
             return (
@@ -72,7 +72,7 @@ const ChainedSelect = ({ setItemInfo, pCategoryId, categoryId }) => {
         <select name="child" onChange={categoryChangeHandler} value={categoryState.child}>
           <option>2차 카테고리 선택</option>
 
-          {childrenCategories?.map((category) => {
+          {childrenCategories?.map((category: any) => {
             const { id, categoryName } = category;
 
             return (

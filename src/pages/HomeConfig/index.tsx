@@ -1,4 +1,3 @@
-import { blue } from '@mui/material/colors';
 import HomeBanner from 'components/BannerConfig';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
