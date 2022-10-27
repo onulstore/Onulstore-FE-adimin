@@ -19,7 +19,7 @@ const ItemEdit = () => {
   const { itemId } = useParams();
   const [cookies] = useCookies();
   const categories = useRef([]);
-  const [itemInfo, setItemInfo] = useState({
+  const [itemInfo, setItemInfo] = useState<any>({
     brandId: 0,
     categoryId: 0,
     pCategoryId: 0,
@@ -35,7 +35,7 @@ const ItemEdit = () => {
 
   // REQUESTS
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: any) => {
     const { name, value } = e.target;
 
     switch (name) {
@@ -43,19 +43,19 @@ const ItemEdit = () => {
       // case 'categoryId': // 하위 컴포넌트에서 따로 사용중..
       case 'price':
       case 'quantity':
-        setItemInfo((prev) => {
+        setItemInfo((prev: any) => {
           return { ...prev, [name]: parseInt(value) };
         });
         return;
       default:
-        setItemInfo((prev) => {
+        setItemInfo((prev: any) => {
           return { ...prev, [name]: value };
         });
     }
   };
 
   const doRegister = async () => {
-    const info = { ...itemInfo };
+    const info: any = { ...itemInfo };
     delete info.productImage;
     delete info.pCategoryId;
     delete info.content;

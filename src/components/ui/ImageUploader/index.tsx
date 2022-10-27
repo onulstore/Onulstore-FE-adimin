@@ -10,7 +10,7 @@ const ImageUploader = ({
   formData,
   isBig,
   imageName,
-}) => {
+}: any) => {
   const [cookies] = useCookies();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [currentImage, setCurrentImage] = useState(null);
@@ -66,7 +66,7 @@ const ImageUploader = ({
       const base64Img = e.target!.result;
 
       setUploader(false);
-      setCurrentImage(base64Img);
+      setCurrentImage(base64Img as any);
       //////////////////////////////////////////
       setUploader(false);
     });
@@ -79,7 +79,6 @@ const ImageUploader = ({
       {!uploader && (
         <div className="image">
           <S.Image
-            isBig={isBig}
             src={
               currentImage
                 ? currentImage
@@ -90,7 +89,7 @@ const ImageUploader = ({
           <button
             onClick={() => {
               setUploader(true);
-              setCurrentImage('');
+              setCurrentImage('' as any);
             }}
           >
             <DeleteIcon />

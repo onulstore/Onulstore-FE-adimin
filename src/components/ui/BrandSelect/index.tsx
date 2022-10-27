@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-const BrandSelect = ({ label, name, options, optionKey, onChange, brandId, defaultMessage }) => {
+const BrandSelect = ({
+  label,
+  name,
+  options,
+  optionKey,
+  onChange,
+  brandId,
+  defaultMessage,
+}: any) => {
   const [cookies] = useCookies();
   const [brands, setBrands] = useState();
   const getBrands = async () => {
@@ -27,7 +35,7 @@ const BrandSelect = ({ label, name, options, optionKey, onChange, brandId, defau
       <div>{label}</div>
       <select name={name} onChange={onChange} value={brandId}>
         <option>브랜드 선택</option>
-        {brands?.map((item) => {
+        {(brands as any)?.map((item: any) => {
           return (
             <option key={item[optionKey]} value={item.id}>
               {item.brandName}

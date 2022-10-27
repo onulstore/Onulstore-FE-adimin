@@ -1,7 +1,7 @@
 import { CloseIcon } from 'components/icons';
 import * as S from './style';
 
-const TodayModal = ({ setModal }) => {
+const TodayModal = ({ setModal }: any) => {
   const onCompleteHandler = () => {};
   const onCloseHandler = () => {
     setModal(false);

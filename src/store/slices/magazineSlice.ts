@@ -21,7 +21,7 @@ export const magazineSlice = createSlice({
     changeMagazine(state, action) {
       const { name, value } = action.payload;
 
-      state.magazine[name] = value;
+      // state.magazine[name] = value;
     },
 
     setMagazines(state, action) {

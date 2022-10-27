@@ -1,7 +1,7 @@
 import * as S from './style';
 import { useAppDispatch } from 'store/hooks';
 import { CloseIcon, SearchIcon } from 'components/icons';
-const MagazineModal = ({ setModal }) => {
+const MagazineModal = ({ setModal }: any) => {
   const dispatch = useAppDispatch();
 
   const onCompleteHandler = () => {};

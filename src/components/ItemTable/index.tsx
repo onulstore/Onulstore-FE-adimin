@@ -7,12 +7,12 @@ import { useCookies } from 'react-cookie';
 import { LeftIcon, OnSaleIcon, RightIcon, SortIcon, StopSellingIcon } from 'components/icons';
 import Select from 'components/ui/BrandSelect';
 
-const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
+const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }: any, ref) => {
   const defaultRef = useRef();
   const resolvedRef = ref || defaultRef;
 
   useEffect(() => {
-    resolvedRef.current.indeterminate = indeterminate;
+    (resolvedRef as any).current.indeterminate = indeterminate;
   }, [resolvedRef, indeterminate]);
 
   return (
@@ -22,7 +22,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   );
 });
 
-const ItemTable = ({ columns, data }) => {
+const ItemTable = ({ columns, data }: any) => {
   const [cookies] = useCookies();
 
   const navigate = useNavigate();
@@ -41,11 +41,11 @@ const ItemTable = ({ columns, data }) => {
     previousPage,
     setPageSize,
     state: { pageIndex, pageSize },
-  } = useTable(
+  }: any = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0 } as any,
     },
 
     useSortBy,
@@ -56,7 +56,7 @@ const ItemTable = ({ columns, data }) => {
         {
           id: 'selection',
 
-          Header: ({ getToggleAllPageRowsSelectedProps }) => (
+          Header: ({ getToggleAllPageRowsSelectedProps }: any) => (
             <div className="header-check">
               <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
             </div>
@@ -64,7 +64,7 @@ const ItemTable = ({ columns, data }) => {
 
           Cell: ({ row }) => (
             <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+              <IndeterminateCheckbox {...(row as any).getToggleRowSelectedProps()} />
             </div>
           ),
         },
@@ -77,9 +77,9 @@ const ItemTable = ({ columns, data }) => {
     <S.Container>
       <table {...getTableProps()} className="table">
         <thead>
-          {headerGroups.map((headerGroup) => (
+          {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
+              {headerGroup.headers.map((column: any) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   <div>
                     <span className="header-title">{column.render('Header')}</span>
@@ -95,11 +95,11 @@ const ItemTable = ({ columns, data }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
+          {page.map((row: any) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+                {row.cells.map((cell: any) => {
                   // console.log('row', row.original);
 
                   switch (cell.column.Header) {

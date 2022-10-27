@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { changeMagazine, resetMagazine, setMagazineInfo } from 'store/slices/magazineSlice';
 import * as S from './style';
 import axios from 'axios';
-const MagazineForm = ({ isEdit }) => {
+const MagazineForm = ({ isEdit }: any) => {
   const [modal, setModal] = useState(false);
 
   const { magazineId } = useParams();
@@ -38,7 +38,7 @@ const MagazineForm = ({ isEdit }) => {
     isEdit && getMagazine();
     !isEdit && dispatch(resetMagazine());
   }, []);
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: any) => {
     const { name, value } = e.target;
 
     dispatch(changeMagazine({ name, value }));
@@ -70,7 +70,7 @@ const MagazineForm = ({ isEdit }) => {
       </div>
       <div className="right">
         <div>매거진 디스플레이 미리보기</div>
-        <img className="preview-image" src={previewImage} alt="이미지가 없습니다" />
+        <img className="preview-image" src={previewImage as any} alt="이미지가 없습니다" />
         <div className="preview-title">
           {magazine?.title.length === 0 && `매거진 제목이 표시되는 곳`}
           {magazine && <div>{magazine.title}</div>}

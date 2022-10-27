@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import * as S from './style';
-const DiscountSelect = ({ label, name, onChange }) => {
+const DiscountSelect = ({ label, name, onChange }: any) => {
   const [brands, setBrands] = useState();
   const [cookies] = useCookies();
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 2.4rem 2.1rem;
-  background-color: ${({ theme }) => theme.palette.whiteGrey};
+  background-color: ${({ theme }: any) => theme.palette.whiteGrey};
 
   .page-label {
     display: flex;

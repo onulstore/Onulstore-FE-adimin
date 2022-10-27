@@ -6,15 +6,15 @@ export const Container = styled.div`
 
     button {
       position: absolute;
-      right: ${({ isBig }) => (isBig ? '1.6rem' : '0.7rem')};
-      top: ${({ isBig }) => (isBig ? '1.6rem' : '0.7rem')};
+      right: 0.7rem;
+      top: 0.7rem;
     }
   }
 `;
 
 export const Image = styled.img`
-  width: ${({ isBig }) => (isBig ? '36rem' : '17rem')};
-  height: ${({ isBig }) => (isBig ? '36rem' : '17rem')};
+  width: 17rem;
+  height: 17rem;
 `;
 export const Button = styled.button`
   /* width: 23.852rem; */

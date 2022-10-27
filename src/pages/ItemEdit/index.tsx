@@ -54,7 +54,7 @@ const ItemEdit = () => {
   };
 
   console.log('유즈스테이트itemInfo', itemInfo);
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: any) => {
     const { name, value } = e.target;
 
     switch (name) {
@@ -129,11 +129,11 @@ const ItemEdit = () => {
   /// DO EDIT
   const doEdit = async () => {
     const info = { ...itemInfo };
-    delete info.productImage;
-    delete info.pCategoryId;
-    delete info.content;
-    delete info.id;
-    delete info.category;
+    delete (info as any).productImage;
+    delete (info as any).pCategoryId;
+    delete (info as any).content;
+    delete (info as any).id;
+    delete (info as any).category;
     console.log('인포', info);
 
     const editRes = await axios({
@@ -160,7 +160,7 @@ const ItemEdit = () => {
     console.log('이미지 등록 성공', res);
   };
 
-  console.log('주소값!!', itemInfo.productImage[0]?.imageName);
+  console.log('주소값!!', (itemInfo as any).productImage[0]?.imageName);
   return (
     <div>
       <FakeEditHeader />
@@ -183,7 +183,7 @@ const ItemEdit = () => {
             <div className="product-left-big">
               <ImageUploader
                 setMulti={setMulti}
-                imageName={itemInfo.productImage[0]?.imageName}
+                imageName={(itemInfo as any).productImage[0]?.imageName}
                 imageOrder={0}
                 isBig={true}
                 formData={multi}
@@ -193,13 +193,13 @@ const ItemEdit = () => {
             <div className="grid-container">
               <ImageUploader
                 setMulti={setMulti}
-                imageName={itemInfo.productImage[1]?.imageName}
+                imageName={(itemInfo as any).productImage[1]?.imageName}
                 imageOrder={1}
                 formData={multi}
               />
               <ImageUploader
                 setMulti={setMulti}
-                imageName={itemInfo.productImage[2]?.imageName}
+                imageName={(itemInfo as any).productImage[2]?.imageName}
                 imageOrder={2}
                 formData={multi}
               />
@@ -221,7 +221,7 @@ const ItemEdit = () => {
               <div className="form-mid">
                 <ChainedSelect
                   pCategoryId={itemInfo.pCategoryId}
-                  categoryId={itemInfo.category}
+                  categoryId={(itemInfo as any).category}
                   categories={categories.current}
                   setItemInfo={setItemInfo}
                   onChange={onChangeHandler}
