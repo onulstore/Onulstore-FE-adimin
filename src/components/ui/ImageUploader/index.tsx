@@ -14,7 +14,7 @@ const ImageUploader = ({
   const [cookies] = useCookies();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [currentImage, setCurrentImage] = useState(null);
-  const [uploader, setUploader] = useState(imageName ? false : true);
+  const [uploader, setUploader] = useState(Boolean(!imageName));
 
   // console.log('currentImage', currentImage);
   const onClickHandler = () => {
@@ -72,6 +72,8 @@ const ImageUploader = ({
     });
   };
 
+  console.log('imageName: ', imageName);
+  console.log('uploader', uploader);
   return (
     <S.Container>
       {!uploader && (
