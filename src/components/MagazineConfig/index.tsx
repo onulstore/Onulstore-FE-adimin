@@ -43,7 +43,7 @@ const MagazineConfig = () => {
 
   const getMagazines = async () => {
     const res = await axios({
-      url: `http://onulstore.dlcpop.com/curations/magazine?page=${0}&size=${100}`,
+      url: `https://onulstore.breon.ml/curations/magazine?page=${0}&size=${100}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

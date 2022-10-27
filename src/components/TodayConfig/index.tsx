@@ -49,7 +49,7 @@ const TodayConfig = () => {
 
   const getItems = async () => {
     const res = await axios({
-      url: `http://onulstore.dlcpop.com/products/list?page=${0}&size=${100}`,
+      url: `https://onulstore.breon.ml/products/list?page=${0}&size=${100}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

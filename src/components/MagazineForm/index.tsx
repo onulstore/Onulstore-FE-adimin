@@ -20,7 +20,7 @@ const MagazineForm = ({ isEdit }) => {
   const dispatch = useAppDispatch();
   const getMagazine = async () => {
     const res = await axios({
-      url: `http://onulstore.dlcpop.com/curations/${magazineId}`,
+      url: `https://onulstore.breon.ml/curations/${magazineId}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

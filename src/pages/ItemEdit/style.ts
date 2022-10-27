@@ -17,7 +17,7 @@ export const Container = styled.div`
       align-items: center;
     }
     .button-container {
-      width: 53.1rem;
+      width: 71.6rem;
       display: flex;
       justify-content: space-between;
     }

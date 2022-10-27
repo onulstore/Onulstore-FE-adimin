@@ -16,6 +16,9 @@ import ItemManagement from 'pages/ItemManagement';
 import MagazineRegister from 'components/MagazineRegister';
 import MagazineEdit from 'components/MagazineEdit';
 import SignIn from 'pages/SignIn';
+import ItemEdit from 'pages/ItemEdit';
+import FakeLeftNav from 'components/FakeLeftNav';
+import FakeLayout from 'components/FakeLayout';
 
 const App = () => {
   return (
@@ -34,8 +37,13 @@ const App = () => {
 
           <Route path="md" element={<MdConfig />} />
         </Route>
-        <Route path="item-register" element={<ItemRegister />} />
-        <Route path="item-management" element={<ItemManagement />} />
+
+        <Route element={<FakeLayout />}>
+          <Route path="item-management" element={<ItemManagement />} />
+          <Route path="item-management/register" element={<ItemRegister />} />
+          <Route path="item-management/:itemId" element={<ItemEdit />} />
+        </Route>
+
         <Route path="signin" element={<SignIn />} />
       </Routes>
     </ThemeProvider>

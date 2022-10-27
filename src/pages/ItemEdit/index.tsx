@@ -14,27 +14,46 @@ import Button from 'components/ui/Button';
 import DiscountSelect from 'components/ui/DiscountSelect';
 
 const ItemEdit = () => {
-  // HOOKS
   const navigate = useNavigate();
   const { itemId } = useParams();
   const [cookies] = useCookies();
   const categories = useRef([]);
+
   const [itemInfo, setItemInfo] = useState({
     brandId: 0,
     categoryId: 0,
     pCategoryId: 0,
-    price: null, // 여기서 오류 발생함 number떄문에 그런듯
+    price: 0,
     productName: '',
     productStatus: 'SALE',
     quantity: 0,
     productImage: [],
     discountStatus: 'FALSE',
   });
+
+  // const dispatch = useAppDispatch();
   const [images, setImages] = useState({});
   const [multi, setMulti] = useState(new FormData());
 
-  // REQUESTS
+  const itemInfos = useAppSelector((state) => state.item);
 
+  const deleteItem = async () => {
+    const res = await axios({
+      url: `https://onulstore.breon.ml/products/${itemId}`,
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${cookies.accessToken}`,
+      },
+    });
+
+    console.log('아이템 삭제 응답값', res);
+
+    alert('아이템이 삭제되었습니다');
+    navigate(-1);
+  };
+
+  console.log('유즈스테이트itemInfo', itemInfo);
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
 
@@ -54,7 +73,61 @@ const ItemEdit = () => {
     }
   };
 
-  const doRegister = async () => {
+  const getItem = async () => {
+    const itemResponse = await axios({
+      url: `https://onulstore.breon.ml/products/${itemId}`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${cookies.accessToken}`,
+        'content-type': 'application/json',
+      },
+    });
+
+    console.log('아이템 GET 결과: ', itemResponse.data);
+
+    const {
+      brand,
+      category,
+      content,
+      id,
+      originalPrice,
+      productImage,
+      productName,
+      productStatus,
+      quantity,
+    } = itemResponse.data;
+
+    setItemInfo((prev) => ({
+      ...prev,
+      brandId: brand.id,
+      category: category.id,
+      pCategoryId: category.parent.id,
+      content,
+      id,
+      price: originalPrice,
+      productImage,
+      productName,
+      productStatus,
+      quantity,
+    }));
+
+    // brandId: 0,
+    // categoryId: 0,
+    // content: '',
+    // price: 0,
+    // productName: '',
+    // productStatus: 'SALE',
+    // quantity: 0,
+
+    // dispatch(setItemInfo(itemInfo));
+  };
+
+  useEffect(() => {
+    getItem();
+  }, []);
+
+  /// DO EDIT
+  const doEdit = async () => {
     const info = { ...itemInfo };
     delete info.productImage;
     delete info.pCategoryId;
@@ -64,8 +137,8 @@ const ItemEdit = () => {
     console.log('인포', info);
 
     const editRes = await axios({
-      url: `https://onulstore.breon.ml/products`,
-      method: 'POST',
+      url: `https://onulstore.breon.ml/products/${itemId}`,
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${cookies.accessToken}`,
         'content-type': 'application/json',
@@ -73,12 +146,10 @@ const ItemEdit = () => {
       data: info,
     });
 
-    console.log('상품등록 성공', editRes.data.id);
-
-    const targetId = editRes.data.id;
-
+    alert('상품이 수정되었습니다');
+    navigate(-1);
     const res = await axios({
-      url: `https://onulstore.breon.ml/products/${targetId}/image`,
+      url: `https://onulstore.breon.ml/products/${itemId}/image`,
       method: 'POST',
       headers: {
         'content-type': 'multipart/form-data',
@@ -87,12 +158,9 @@ const ItemEdit = () => {
       data: multi,
     });
     console.log('이미지 등록 성공', res);
-
-    alert('상품 등록에 성공했습니다');
-
-    navigate('/item-management');
   };
 
+  console.log('주소값!!', itemInfo.productImage[0]?.imageName);
   return (
     <div>
       <FakeEditHeader />
@@ -100,10 +168,11 @@ const ItemEdit = () => {
         <div className="page-label">
           <div className="page-title">아이템 상세정보 수정</div>
           <div className="button-container">
-            <Button onClick={() => navigate('/item-management')}>등록 취소</Button>
-            <Button onClick={doRegister}>판매중단 상태로 등록</Button>
-            <Button color="#F17659" onClick={doRegister}>
-              판매하기 상태로 등록
+            <Button onClick={() => navigate(-1)}>수정 취소</Button>
+            <Button onClick={deleteItem}>아이템 삭제</Button>
+            <Button onClick={doEdit}>판매중단 상태로 저장</Button>
+            <Button color="#F17659" onClick={doEdit}>
+              판매하기 상태로 저장
             </Button>
           </div>
         </div>
@@ -112,12 +181,28 @@ const ItemEdit = () => {
             <div className="product-left-title">아이템 이미지</div>
 
             <div className="product-left-big">
-              <ImageUploader setMulti={setMulti} imageOrder={0} isBig={true} formData={multi} />
+              <ImageUploader
+                setMulti={setMulti}
+                imageName={itemInfo.productImage[0]?.imageName}
+                imageOrder={0}
+                isBig={true}
+                formData={multi}
+              />
             </div>
 
             <div className="grid-container">
-              <ImageUploader setMulti={setMulti} imageOrder={1} formData={multi} />
-              <ImageUploader setMulti={setMulti} imageOrder={2} formData={multi} />
+              <ImageUploader
+                setMulti={setMulti}
+                imageName={itemInfo.productImage[1]?.imageName}
+                imageOrder={1}
+                formData={multi}
+              />
+              <ImageUploader
+                setMulti={setMulti}
+                imageName={itemInfo.productImage[2]?.imageName}
+                imageOrder={2}
+                formData={multi}
+              />
               <ImageUploader setMulti={setMulti} imageOrder={3} formData={multi} />
               <ImageUploader setMulti={setMulti} imageOrder={4} />
             </div>
@@ -148,7 +233,7 @@ const ItemEdit = () => {
                       label="판매가격 (정가)"
                       name="price"
                       onChange={onChangeHandler}
-                      value={itemInfo.price}
+                      value={itemInfo.price!}
                       placeholder="숫자 입력 (¥)"
                     />
                   </div>
@@ -161,7 +246,6 @@ const ItemEdit = () => {
                   <BrandSelect
                     label="브랜드"
                     name="brandId"
-                    optionKey="brandName"
                     onChange={onChangeHandler}
                     brandId={itemInfo.brandId}
                   />
