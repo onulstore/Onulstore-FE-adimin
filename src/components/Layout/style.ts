@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  height: 102.4rem;
   display: flex;
-  .fake {
+  .left-nav {
     flex-shrink: 0;
   }
   .outlet {
