@@ -1,8 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import * as S from './style';
-
+import { useCookies } from 'react-cookie';
 const LeftNavBar = () => {
+  const navigate = useNavigate();
+  const [, , removeCookie] = useCookies();
+
+  const logOutHandler = () => {
+    removeCookie('accessToken');
+    navigate('/signin');
+    navigate(0);
+  };
   return (
     <S.Container>
       <S.Paths>
@@ -41,7 +49,7 @@ const LeftNavBar = () => {
         </NavLink>
       </S.Paths>
 
-      <S.LogOutBtn>아이콘 | Logout</S.LogOutBtn>
+      <S.LogOutBtn onClick={logOutHandler}>아이콘 | Logout</S.LogOutBtn>
     </S.Container>
   );
 };
