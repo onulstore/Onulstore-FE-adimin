@@ -17,7 +17,7 @@ import MagazineRegister from 'components/MagazineRegister';
 import MagazineEdit from 'components/MagazineEdit';
 import SignIn from 'pages/SignIn';
 import ItemEdit from 'pages/ItemEdit';
-import FakeLeftNav from 'components/FakeLeftNav';
+import FakeLeftNav from 'components/LeftNavBar';
 import FakeLayout from 'components/FakeLayout';
 
 const App = () => {
