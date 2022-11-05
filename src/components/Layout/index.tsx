@@ -2,10 +2,10 @@ import LeftNavBar from 'components/LeftNavBar';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import * as S from './style';
-const FakeLayout = () => {
+const Layout = () => {
   return (
     <S.Container>
-      <div className="fake">
+      <div className="left-nav">
         <LeftNavBar />
       </div>
 
@@ -16,4 +16,4 @@ const FakeLayout = () => {
   );
 };
 
-export default FakeLayout;
+export default Layout;

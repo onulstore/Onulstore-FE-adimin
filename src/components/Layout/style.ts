@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  .fake {
+  .left-nav {
     flex-shrink: 0;
   }
   .outlet {

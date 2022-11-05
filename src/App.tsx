@@ -17,33 +17,40 @@ import MagazineRegister from 'components/MagazineRegister';
 import MagazineEdit from 'components/MagazineEdit';
 import SignIn from 'pages/SignIn';
 import ItemEdit from 'pages/ItemEdit';
-import FakeLeftNav from 'components/LeftNavBar';
-import FakeLayout from 'components/FakeLayout';
+import Layout from 'components/Layout';
+import Dashboard from 'pages/Dashboard';
+import OrderManagement from 'pages/OrderManagement';
+import ReviewManagement from 'pages/ReviewManagement';
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Routes>
-        <Route index element={<Home />} />
-        <Route path="home-config" element={<HomeConfig />}>
-          <Route path="banner" element={<BannerConfig />} />
-          <Route path="curation" element={<CurationConfig />} />
-          <Route path="review" element={<ReviewConfig />} />
-          <Route path="today" element={<TodayConfig />} />
-          <Route path="magazine" element={<MagazineConfig />} />
-          <Route path="magazine/register" element={<MagazineRegister />} />
-          <Route path="magazine/:magazineId" element={<MagazineEdit />} />
-
-          <Route path="md" element={<MdConfig />} />
-        </Route>
-
-        <Route element={<FakeLayout />}>
+        <Route element={<Layout />}>
+          {/* 대쉬보드(홈) */}
+          <Route index element={<Dashboard />} />
+          {/* 주문 관리 페이지 */}
+          <Route path="order-management" element={<OrderManagement />} />
+          {/* 아이템 관리 페이지 */}
           <Route path="item-management" element={<ItemManagement />} />
           <Route path="item-management/register" element={<ItemRegister />} />
           <Route path="item-management/:itemId" element={<ItemEdit />} />
+          {/* 리뷰 관리 */}
+          <Route path="review-management" element={<ReviewManagement />} />
+          {/* 홈/큐레이션 설정 */}
+          <Route path="home-config" element={<HomeConfig />}>
+            <Route path="banner" element={<BannerConfig />} />
+            <Route path="curation" element={<CurationConfig />} />
+            <Route path="review" element={<ReviewConfig />} />
+            <Route path="today" element={<TodayConfig />} />
+            <Route path="magazine" element={<MagazineConfig />} />
+            <Route path="magazine/register" element={<MagazineRegister />} />
+            <Route path="magazine/:magazineId" element={<MagazineEdit />} />
+            <Route path="md" element={<MdConfig />} />
+          </Route>
         </Route>
-
+        {/* 로그인 페이지 */}
         <Route path="signin" element={<SignIn />} />
       </Routes>
     </ThemeProvider>
