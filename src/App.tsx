@@ -29,7 +29,7 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           {/* 대쉬보드(홈) */}
-          <Route index element={<Dashboard />} />
+          <Route index path="dashboard" element={<Dashboard />} />
           {/* 주문 관리 페이지 */}
           <Route path="order-management" element={<OrderManagement />} />
           {/* 아이템 관리 페이지 */}
