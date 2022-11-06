@@ -21,6 +21,7 @@ import Layout from 'components/Layout';
 import Dashboard from 'pages/Dashboard';
 import OrderManagement from 'pages/OrderManagement';
 import ReviewManagement from 'pages/ReviewManagement';
+import OrderSheet from 'pages/OrderSheet';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route index path="dashboard" element={<Dashboard />} />
           {/* 주문 관리 페이지 */}
           <Route path="order-management" element={<OrderManagement />} />
+          <Route path="order-management/:id" element={<OrderSheet />} />
           {/* 아이템 관리 페이지 */}
           <Route path="item-management" element={<ItemManagement />} />
           <Route path="item-management/register" element={<ItemRegister />} />

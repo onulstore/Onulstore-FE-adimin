@@ -112,9 +112,11 @@ const OrderTable = ({ columns, data }: any) => {
                     //   );
 
                     default:
+                      const orderId = row.original.orderId;
+
                       return (
                         <td {...cell.getCellProps()}>
-                          <div>{cell.render('Cell')}</div>
+                          <Link to={`${orderId}`}>{cell.render('Cell')}</Link>
                         </td>
                       );
                   }
